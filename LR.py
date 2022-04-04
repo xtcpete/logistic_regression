@@ -1,4 +1,4 @@
-# our implementation of logistic regression 
+# implementation of logistic regression 
 # using sparse matrix to reduce computation time and memory usage
 import numpy as np
 from scipy.linalg import blas
@@ -116,7 +116,7 @@ class LogisticRegression_():
         return self
     
     def calculate_z(self, x):
-        # function used to calculate the z value which is used to calculate the probabilities of 2 classes
+        # function used to calculate the z value which is used to calculate the probabilities of 2 labels
         beta = self.w
         x = self.normalization(x)
         m = x.shape[0] # number of rows
@@ -127,6 +127,7 @@ class LogisticRegression_():
         return result
     
     def predict_prob(self, x):
+        # function that calculated the probabilities for two classes
         z = self.calculate_z(x)
         p_ = np.exp(z)
         p_1 = p_ / (1+p_)
@@ -135,6 +136,7 @@ class LogisticRegression_():
         return p
 
     def predict(self, x):
+        # function that predict the class
         prob = self.predict_prob(x)
         pred_class = []
         for pred_p in prob:
